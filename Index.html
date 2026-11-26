@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <title>CekFakta Sekolah: Lawan Hoaks & Misinformasi</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    body { font-family: 'Plus Jakarta Sans', sans-serif; }
+  </style>
+</head>
+<body class="bg-slate-50 text-slate-800 antialiased">
+
+  <!-- Navbar -->
+  <nav class="sticky top-0 z-50 bg-white/90 backdrop-blur border-b border-slate-200">
+    <div class="max-w-6xl mx-auto px-4 py-3 flex items-center justify-between">
+      <div class="flex items-center gap-2">
+        <span class="bg-indigo-600 text-white font-extrabold px-2.5 py-1 rounded-lg text-sm">CF</span>
+        <span class="font-bold text-lg text-slate-900">CekFakta<span class="text-indigo-600">Sekolah</span></span>
+      </div>
+      <div class="hidden md:flex items-center gap-6 text-sm font-medium text-slate-600">
+        <a href="#analisis" class="hover:text-indigo-600 transition">Analisis Masalah</a>
+        <a href="#tujuan" class="hover:text-indigo-600 transition">Tujuan & Sasaran</a>
+        <a href="#simulator" class="hover:text-indigo-600 transition">Simulator Cek Fakta</a>
+        <a href="#papan-laporan" class="hover:text-indigo-600 transition">Papan Laporan</a>
+      </div>
+      <a href="#simulator" class="bg-indigo-600 hover:bg-indigo-700 text-white text-xs md:text-sm font-semibold px-4 py-2 rounded-full transition shadow-sm">
+        Mulai Cek Pesan
+      </a>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <header class="bg-gradient-to-br from-indigo-700 via-indigo-600 to-blue-600 text-white py-14 md:py-20 px-4">
+    <div class="max-w-6xl mx-auto grid md:grid-cols-2 gap-10 items-center">
+      <div>
+        <span class="inline-block bg-white/15 text-indigo-100 text-xs font-semibold px-3 py-1 rounded-full mb-4">
+          Gerakan Literasi Digital Pelajar
+        </span>
+        <h1 class="text-3xl md:text-5xl font-extrabold leading-tight mb-4">
+          Saring Sebelum Sharing di Grup WhatsApp Kelas!
+        </h1>
+        <p class="text-indigo-100 text-base md:text-lg mb-8 leading-relaxed">
+          Jangan biarkan pesan berantai palsu, jadwal ujian hoaks, atau tautan penipuan merusak suasana belajar. Uji kebenaran informasi secara mandiri di sini.
+        </p>
+        <div class="flex flex-wrap gap-3">
+          <a href="#simulator" class="bg-amber-400 hover:bg-amber-300 text-slate-900 font-bold px-6 py-3 rounded-xl shadow-lg transition">
+            Uji Pesan Sekarang
+          </a>
+          <a href="#analisis" class="bg-white/10 hover:bg-white/20 text-white font-semibold px-6 py-3 rounded-xl transition">
+            Pelajari Pola Hoaks
+          </a>
+        </div>
+      </div>
+
+      <!-- Ilustrasi Chat Grup Kelas -->
+      <div class="bg-slate-100 text-slate-800 rounded-2xl p-4 shadow-2xl border-4 border-white/20 max-w-md mx-auto w-full">
+        <div class="bg-emerald-700 text-white px-4 py-2.5 rounded-t-xl flex items-center justify-between">
+          <div>
+            <p class="font-bold text-sm">Grup Kelas XI-IPA 2</p>
+            <p class="text-[11px] text-emerald-200">34 Anggota • Online</p>
+          </div>
+          <span class="text-xs bg-emerald-800 px-2 py-0.5 rounded">WhatsApp</span>
+        </div>
+        <div class="bg-[#efeae2] p-4 space-y-3 rounded-b-xl text-xs md:text-sm">
+          <div class="bg-white p-3 rounded-lg rounded-tl-none shadow-sm max-w-[85%]">
+            <p class="font-bold text-rose-600 text-[11px] mb-1">~ Anggota Kelas • Diteruskan berkali-kali</p>
+            <p>URGENT!! Besok sekolah diliburkan mendadak karena ada rapat dinas pusat. Sebarkan ke grup lain!! 🔥🔥</p>
+          </div>
+          <div class="bg-emerald-100 p-3 rounded-lg rounded-tr-none shadow-sm max-w-[85%] ml-auto border border-emerald-300">
+            <p class="font-bold text-emerald-800 text-[11px] mb-1">Kamu (Admin Literasi)</p>
+            <p>Tahan dulu! Aku barusan cek di <b>CekFakta Sekolah</b> dan tanya Wali Kelas. Tidak ada surat edaran resmi. Besok tetap masuk seperti biasa ya!</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Bagian 1: Analisis Masalah -->
+  <section id="analisis" class="max-w-6xl mx-auto px-4 py-16">
+    <div class="text-center max-w-2xl mx-auto mb-12">
+      <h2 class="text-2xl md:text-3xl font-extrabold text-slate-900 mb-3">Analisis Masalah Misinformasi Sekolah</h2>
+      <p class="text-slate-600 text-sm md:text-base">Memahami akar masalah penyebaran pesan berantai di lingkungan pelajar agar kita lebih waspada.</p>
+    </div>
+
+    <div class="grid md:grid-cols-3 gap-6">
+      <!-- Penyebab -->
+      <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm">
+        <div class="w-10 h-10 bg-amber-100 text-amber-600 rounded-xl flex items-center justify-center font-bold text-lg mb-4">!</div>
+        <h3 class="font-bold text-lg text-slate-900 mb-3">Faktor Penyebab</h3>
+        <ul class="space-y-2.5 text-sm text-slate-600">
+          <li>• <b>FOMO (Fear of Missing Out):</b> Ingin menjadi yang paling cepat memberi info ke teman.</li>
+          <li>• <b>Judul Clickbait & Mendesak:</b> Kalimat "URGENT" atau "Sebarkan!" memicu kepanikan.</li>
+          <li>• <b>Bias Konfirmasi:</b> Langsung percaya karena sesuai harapan (misal: kabar libur).</li>
+        </ul>
+      </div>
+
+      <!-- Dampak -->
+      <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm">
+        <div class="w-10 h-10 bg-rose-100 text-rose-600 rounded-xl flex items-center justify-center font-bold text-lg mb-4">×</div>
+        <h3 class="font-bold text-lg text-slate-900 mb-3">Dampak Negatif</h3>
+        <ul class="space-y-2.5 text-sm text-slate-600">
+          <li>• <b>Salah Jadwal & Ketinggalan Ujian:</b> Siswa tidak hadir karena percaya info libur palsu.</li>
+          <li>• <b>Perundungan Siber (Cyberbullying):</b> Fitnah terhadap siswa atau guru tertentu di grup.</li>
+          <li>• <b>Penipuan Phishing:</b> Tautan kuota belajar gratis palsu yang mencuri akun media sosial.</li>
+        </ul>
+      </div>
+
+      <!-- Pihak Terdampak -->
+      <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm">
+        <div class="w-10 h-10 bg-indigo-100 text-indigo-600 rounded-xl flex items-center justify-center font-bold text-lg mb-4">@</div>
+        <h3 class="font-bold text-lg text-slate-900 mb-3">Pihak Terdampak</h3>
+        <ul class="space-y-2.5 text-sm text-slate-600">
+          <li>• <b>Siswa:</b> Kehilangan fokus belajar, dirugikan secara akademik maupun keamanan digital.</li>
+          <li>• <b>Guru & Wali Kelas:</b> Kewalahan mengklarifikasi pesan palsu yang berulang.</li>
+          <li>• <b>Orang Tua:</b> Ikut panik dan bingung terkait jadwal kegiatan atau biaya sekolah.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- Bagian 2: Tujuan & Sasaran Pengguna -->
+  <section id="tujuan" class="bg-slate-900 text-white py-16 px-4">
+    <div class="max-w-6xl mx-auto grid md:grid-cols-2 gap-10 items-center">
+      <div>
+        <h2 class="text-2xl md:text-3xl font-extrabold mb-4">Tujuan & Sasaran Pengguna</h2>
+        <p class="text-slate-300 text-sm md:text-base mb-6 leading-relaxed">
+          Platform ini dirancang sebagai alat bantu praktis agar warga sekolah terbiasa melakukan verifikasi berbasis indikator objektif sebelum meneruskan informasi.
+        </p>
+        <div class="space-y-4 text-sm">
+          <div class="bg-slate-800 p-4 rounded-xl border border-slate-700">
+            <h4 class="font-bold text-amber-400 mb-1">1. Pelajar (SMP / SMA / SMK)</h4>
+            <p class="text-slate-300">Melatih berpikir kritis dan menjadi filter pertama di grup obrolan kelas maupun ekstrakurikuler.</p>
+          </div>
+          <div class="bg-slate-800 p-4 rounded-xl border border-slate-700">
+            <h4 class="font-bold text-emerald-400 mb-1">2. Pengurus OSIS / MPK & Duta Literasi</h4>
+            <p class="text-slate-300">Memantau tren hoaks yang beredar di sekolah melalui Papan Laporan terpusat.</p>
+          </div>
+          <div class="bg-slate-800 p-4 rounded-xl border border-slate-700">
+            <h4 class="font-bold text-indigo-400 mb-1">3. Guru & Komite Orang Tua</h4>
+            <p class="text-slate-300">Menjadikan simulator ini sebagai media edukasi interaktif di kelas atau forum orang tua.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="bg-slate-800/80 p-6 md:p-8 rounded-2xl border border-slate-700">
+        <h3 class="font-bold text-xl mb-4 text-white">5 Prinsip Cek Fakta Pelajar</h3>
+        <ol class="space-y-3 text-sm text-slate-300 list-decimal list-inside">
+          <li class="p-2 bg-slate-900/60 rounded-lg"><b>Cek Sumber Asli:</b> Apakah berasal dari akun resmi sekolah/dinas?</li>
+          <li class="p-2 bg-slate-900/60 rounded-lg"><b>Periksa Tanggal & Konteks:</b> Apakah pengumuman lama yang didaur ulang?</li>
+          <li class="p-2 bg-slate-900/60 rounded-lg"><b>Waspada Bahasa Provokatif:</b> Hindari pesan penuh huruf kapital & tanda seru.</li>
+          <li class="p-2 bg-slate-900/60 rounded-lg"><b>Amati Tautan (URL):</b> Pastikan domain resmi (<code>.sch.id</code> / <code>.go.id</code>).</li>
+          <li class="p-2 bg-slate-900/60 rounded-lg"><b>Konfirmasi Silang:</b> Tanyakan ke wali kelas sebelum membagikan ulang.</li>
+        </ol>
+      </div>
+    </div>
+  </section>
+
+  <!-- Bagian 3: Simulator & Kalkulator Cek Fakta -->
+  <section id="simulator" class="max-w-5xl mx-auto px-4 py-16">
+    <div class="text-center max-w-2xl mx-auto mb-10">
+      <span class="bg-indigo-100 text-indigo-700 text-xs font-bold px-3 py-1 rounded-full">FITUR UTAMA</span>
+      <h2 class="text-2xl md:text-3xl font-extrabold text-slate-900 mt-2 mb-3">Simulator & Kalkulator Cek Fakta</h2>
+      <p class="text-slate-600 text-sm">Tempel pesan yang kamu terima di grup kelas, pilih contoh kasus, dan jawab 5 indikator verifikasi untuk menghitung skor kredibilitasnya.</p>
+    </div>
+
+    <div class="bg-white rounded-3xl shadow-xl border border-slate-200 p-6 md:p-8">
+      <!-- Tombol Kasus Populer -->
+      <div class="mb-6">
+        <p class="text-xs font-bold uppercase tracking-wider text-slate-500 mb-2">Coba Contoh Kasus Populer:</p>
+        <div class="flex flex-wrap gap-2">
+          <button type="button" onclick="isiContohKasus('libur')" class="text-xs bg-rose-50 hover:bg-rose-100 text-rose-700 font-semibold px-3 py-2 rounded-lg border border-rose-200 transition">
+            Kasus 1: Info Libur Mendadak
+          </button>
+          <button type="button" onclick="isiContohKasus('kuota')" class="text-xs bg-amber-50 hover:bg-amber-100 text-amber-700 font-semibold px-3 py-2 rounded-lg border border-amber-200 transition">
+            Kasus 2: Link Kuota Gratis
+          </button>
+          <button type="button" onclick="isiContohKasus('ujian')" class="text-xs bg-emerald-50 hover:bg-emerald-100 text-emerald-700 font-semibold px-3 py-2 rounded-lg border border-emerald-200 transition">
+            Kasus 3: Jadwal Resmi Ujian
+          </button>
+        </div>
+      </div>
+
+      <form id="formCekFakta" class="space-y-6">
+        <div class="grid md:grid-cols-2 gap-4">
+          <div>
+            <label class="block text-sm font-bold text-slate-700 mb-1">Nama / Kelas Pelapor (Opsional)</label>
+            <input type="text" id="inputPelapor" placeholder="Contoh: Rina - XI IPA 2" class="w-full px-4 py-2.5 rounded-xl border border-slate-300 focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 text-sm">
+          </div>
+          <div>
+            <label class="block text-sm font-bold text-slate-700 mb-1">Sumber Awal Pesan</label>
+            <select id="inputSumber" class="w-full px-4 py-2.5 rounded-xl border border-slate-300 focus:ring-2 focus:ring-indigo-500 text-sm bg-white">
+              <option value="forwarded">Pesan Diteruskan (Forwarded) tanpa nama pengirim asli</option>
+              <option value="sosmed">Screenshot / Postingan Media Sosial tidak resmi</option>
+              <option value="resmi">Website / Akun Resmi Sekolah / Wali Kelas</option>
+            </select>
+          </div>
+        </div>
+
+        <div>
+          <label class="block text-sm font-bold text-slate-700 mb-1">Isi Pesan atau Tautan yang Diperiksa *</label>
+          <textarea id="inputPesan" rows="3" required placeholder="Tempel teks pesan berantai dari WhatsApp/Instagram di sini..." class="w-full px-4 py-3 rounded-xl border border-slate-300 focus:ring-2 focus:ring-indigo-500 text-sm"></textarea>
+        </div>
+
+        <!-- 5 Indikator Penilaian -->
+        <div class="bg-slate-50 p-5 rounded-2xl border border-slate-200 space-y-3">
+          <p class="font-bold text-sm text-slate-800">Centang pernyataan yang BENAR sesuai pesan di atas:</p>
+          
+          <label class="flex items-start gap-3 cursor-pointer text-sm">
+            <input type="checkbox" id="cek1" class="mt-1 w-4 h-4 text-indigo-600 rounded">
+            <span>Menyebutkan sumber resmi yang jelas (misal: Kepala Sekolah, Kemendikbud, atau surat bernomor resmi).</span>
+          </label>
+          
+          <label class="flex items-start gap-3 cursor-pointer text-sm">
+            <input type="checkbox" id="cek2" class="mt-1 w-4 h-4 text-indigo-600 rounded">
+            <span>Mencantumkan tanggal, waktu, dan konteks kejadian yang masuk akal serta relevan saat ini.</span>
+          </label>
+          
+          <label class="flex items-start gap-3 cursor-pointer text-sm">
+            <input type="checkbox" id="cek3" class="mt-1 w-4 h-4 text-indigo-600 rounded">
+            <span>Menggunakan bahasa baku/informatif (tidak memaksa untuk segera disebarkan atau menakut-nakuti).</span>
+          </label>
+          
+          <label class="flex items-start gap-3 cursor-pointer text-sm">
+            <input type="checkbox" id="cek4" class="mt-1 w-4 h-4 text-indigo-600 rounded">
+            <span>Jika ada tautan (link), menggunakan domain resmi (<code>.sch.id</code> atau <code>.go.id</code>) dan bukan link mencurigakan.</span>
+          </label>
+          
+          <label class="flex items-start gap-3 cursor-pointer text-sm">
+            <input type="checkbox" id="cek5" class="mt-1 w-4 h-4 text-indigo-600 rounded">
+            <span>Sudah dikonfirmasi kebenarannya ke guru, wali kelas, atau papan pengumuman sekolah.</span>
+          </label>
+        </div>
+
+        <button type="submit" id="btnHitung" class="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-3.5 rounded-xl shadow-md transition flex items-center justify-center gap-2">
+          <span>Analisis & Hitung Skor Kredibilitas</span>
+        </button>
+      </form>
+
+      <!-- Kotak Hasil Analisis -->
+      <div id="hasilBox" class="hidden mt-8 p-6 rounded-2xl border-2 transition-all">
+        <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 pb-4 border-b border-slate-200/70">
+          <div>
+            <span id="badgeStatus" class="inline-block text-xs font-extrabold px-3 py-1 rounded-full uppercase tracking-wide mb-1">STATUS</span>
+            <h3 id="judulHasil" class="text-xl font-extrabold text-slate-900">Hasil Analisis</h3>
+          </div>
+          <div class="text-left md:text-right">
+            <p class="text-xs text-slate-500 font-semibold">Skor Kredibilitas</p>
+            <p id="nilaiSkor" class="text-4xl font-black text-indigo-600">0/100</p>
+          </div>
+        </div>
+
+        <div class="mt-4 space-y-2 text-sm">
+          <p id="rekomendasiTeks" class="font-medium text-slate-700"></p>
+          <div id="deteksiOtomatis" class="p-3 bg-white/80 rounded-xl text-xs text-slate-600 border border-slate-200"></div>
+        </div>
+
+        <div class="mt-5 flex flex-wrap items-center justify-between gap-3">
+          <span id="statusSimpan" class="text-xs font-semibold text-slate-500">Menyimpan laporan ke Google Sheets sekolah...</span>
+          <button type="button" onclick="resetForm()" class="text-xs font-bold text-indigo-600 hover:underline">Uji Pesan Lainnya</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Bagian 4: Papan Laporan Simulasi Hoaks Sekolah (Database Google Sheets) -->
+  <section id="papan-laporan" class="bg-slate-100 py-16 px-4 border-t border-slate-200">
+    <div class="max-w-6xl mx-auto">
+      <div class="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-8">
+        <div>
+          <h2 class="text-2xl md:text-3xl font-extrabold text-slate-900">Papan Laporan Cek Fakta Sekolah</h2>
+          <p class="text-slate-600 text-sm mt-1">Data riwayat pengecekan siswa yang tersimpan secara terpusat di Google Sheets sekolah.</p>
+        </div>
+        <div class="flex gap-2">
+          <button onclick="filterLaporan('SEMUA')" class="filter-btn bg-indigo-600 text-white text-xs font-bold px-3 py-2 rounded-lg">Semua</button>
+          <button onclick="filterLaporan('HOAKS')" class="filter-btn bg-white text-slate-700 text-xs font-bold px-3 py-2 rounded-lg border border-slate-300">Hoaks</button>
+          <button onclick="filterLaporan('MERAGUKAN')" class="filter-btn bg-white text-slate-700 text-xs font-bold px-3 py-2 rounded-lg border border-slate-300">Meragukan</button>
+          <button onclick="filterLaporan('VALID')" class="filter-btn bg-white text-slate-700 text-xs font-bold px-3 py-2 rounded-lg border border-slate-300">Valid</button>
+        </div>
+      </div>
+
+      <!-- Statistik Ringkas -->
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
+        <div class="bg-white p-4 rounded-xl border border-slate-200">
+          <p class="text-xs text-slate-500 font-semibold">Total Diperiksa</p>
+          <p id="statTotal" class="text-2xl font-extrabold text-slate-900 mt-1">0</p>
+        </div>
+        <div class="bg-white p-4 rounded-xl border border-rose-200">
+          <p class="text-xs text-rose-600 font-semibold">Terindikasi Hoaks</p>
+          <p id="statHoaks" class="text-2xl font-extrabold text-rose-600 mt-1">0</p>
+        </div>
+        <div class="bg-white p-4 rounded-xl border border-amber-200">
+          <p class="text-xs text-amber-600 font-semibold">Meragukan</p>
+          <p id="statMeragukan" class="text-2xl font-extrabold text-amber-600 mt-1">0</p>
+        </div>
+        <div class="bg-white p-4 rounded-xl border border-emerald-200">
+          <p class="text-xs text-emerald-600 font-semibold">Fakta Valid</p>
+          <p id="statValid" class="text-2xl font-extrabold text-emerald-600 mt-1">0</p>
+        </div>
+      </div>
+
+      <!-- Tabel / Daftar Laporan -->
+      <div class="bg-white rounded-2xl shadow-sm border border-slate-200 overflow-hidden">
+        <div class="overflow-x-auto">
+          <table class="w-full text-left border-collapse text-sm">
+            <thead>
+              <tr class="bg-slate-50 border-b border-slate-200 text-xs uppercase text-slate-500 font-bold">
+                <th class="py-3.5 px-4">Waktu & Pelapor</th>
+                <th class="py-3.5 px-4">Klaim / Pesan yang Diuji</th>
+                <th class="py-3.5 px-4">Skor</th>
+                <th class="py-3.5 px-4">Status</th>
+              </tr>
+            </thead>
+            <tbody id="tabelLaporanBody" class="divide-y divide-slate-100">
+              <tr>
+                <td colspan="4" class="py-8 text-center text-slate-400">Memuat data dari server sekolah...</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="bg-white border-t border-slate-200 py-8 px-4 text-center text-xs text-slate-500">
+    <p class="font-semibold text-slate-700 mb-1">CekFakta Sekolah • Gerakan Literasi Digital Pelajar</p>
+    <p>Dibangun menggunakan Google Apps Script & Google Sheets untuk edukasi verifikasi informasi.</p>
+  </footer>
+
+  <!-- Memanggil file JavaScript.html -->
+  <?!= include('JavaScript'); ?>
+</body>
+</html>
