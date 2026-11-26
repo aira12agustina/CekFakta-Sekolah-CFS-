@@ -1,0 +1,235 @@
+<script>
+  let semuaLaporan = [];
+  let filterAktif = 'SEMUA';
+
+  // Memuat data laporan dari Google Sheets saat halaman pertama kali dibuka
+  document.addEventListener('DOMContentLoaded', function() {
+    muatDataDariServer();
+  });
+
+  function muatDataDariServer() {
+    google.script.run
+      .withSuccessHandler(function(data) {
+        semuaLaporan = data || [];
+        renderPapanLaporan();
+      })
+      .withFailureHandler(function(err) {
+        document.getElementById('tabelLaporanBody').innerHTML = 
+          '<tr><td colspan="4" class="py-6 text-center text-rose-500">Gagal memuat data dari Google Sheets.</td></tr>';
+      })
+      .getDaftarLaporan();
+  }
+
+  // Mengisi form otomatis untuk simulasi contoh kasus
+  function isiContohKasus(jenis) {
+    const pesanEl = document.getElementById('inputPesan');
+    const sumberEl = document.getElementById('inputSumber');
+    const checks = ['cek1', 'cek2', 'cek3', 'cek4', 'cek5'].map(id => document.getElementById(id));
+    
+    // Reset semua checkbox
+    checks.forEach(c => c.checked = false);
+
+    if (jenis === 'libur') {
+      sumberEl.value = 'forwarded';
+      pesanEl.value = 'URGENT!! Info dari grup sebelah, besok seluruh siswa diliburkan mendadak karena ada kunjungan pejabat. SEBARKAN KE GRUP KELAS LAIN SEKARANG!!';
+    } else if (jenis === 'kuota') {
+      sumberEl.value = 'sosmed';
+      pesanEl.value = 'Selamat! Kamu terpilih mendapatkan bantuan Kuota Belajar Gratis 50GB dari Kemendikbud. Segera klaim sebelum hangus di http://kuota-gratis-pelajar.xyz/klaim';
+    } else if (jenis === 'ujian') {
+      sumberEl.value = 'resmi';
+      pesanEl.value = 'Pengumuman Resmi No. 421/108/SMA.01: Pelaksanaan Penilaian Akhir Semester (PAS) dimulai Senin, 30 November 2026 pukul 07.30 WIB. Info lengkap: https://sman1contoh.sch.id/pas2026';
+      checks.forEach(c => c.checked = true);
+    }
+  }
+
+  // Proses Submit Form Cek Fakta
+  document.getElementById('formCekFakta').addEventListener('submit', function(e) {
+    e.preventDefault();
+
+    const pelapor = document.getElementById('inputPelapor').value.trim() || 'Siswa (Anonim)';
+    const sumber = document.getElementById('inputSumber').value;
+    const pesan = document.getElementById('inputPesan').value.trim();
+
+    if (!pesan) return;
+
+    // 1. Hitung skor dari 5 indikator centang (maksimal 80 poin)
+    let skor = 0;
+    for (let i = 1; i <= 5; i++) {
+      if (document.getElementById('cek' + i).checked) skor += 16;
+    }
+
+    // 2. Tambahan skor dari jenis sumber (maksimal 20 poin)
+    if (sumber === 'resmi') skor += 20;
+    else if (sumber === 'sosmed') skor += 5;
+
+    // 3. Analisis Pola Teks Otomatis (Pengurangan skor jika ada ciri khas hoaks)
+    let catatanDeteksi = [];
+    const hurufKapital = (pesan.match(/[A-Z]/g) || []).length;
+    const rasioKapital = hurufKapital / pesan.length;
+
+    if (rasioKapital > 0.35 && pesan.length > 15) {
+      skor -= 10;
+      catatanDeteksi.push('Terdeteksi penggunaan huruf kapital berlebihan (memancing emosi/panik).');
+    }
+
+    if (/sebarkan|viralkan|teruskan|bagikan ke/i.test(pesan)) {
+      skor -= 10;
+      catatanDeteksi.push('Terdapat kalimat ajakan berantai ("sebarkan/bagikan").');
+    }
+
+    if (/http:\/\/|\.xyz|\.top|\.tk|bit\.ly/i.test(pesan)) {
+      skor -= 15;
+      catatanDeteksi.push('Tautan tidak menggunakan protokol aman HTTPS atau memakai domain rawan phishing.');
+    }
+
+    // Pastikan skor berada di rentang 0 - 100
+    skor = Math.max(0, Math.min(100, skor));
+
+    // 4. Tentukan Kategori Status
+    let status = '';
+    let judul = '';
+    let rekomendasi = '';
+    let warnaBox = '';
+    let warnaBadge = '';
+
+    if (skor >= 75) {
+      status = 'VALID';
+      judul = 'Informasi Kredibel & Dapat Dipercaya';
+      rekomendasi = 'Pesan ini memenuhi indikator sumber resmi dan kejelasan konteks. Aman dibagikan ke grup kelas.';
+      warnaBox = 'bg-emerald-50 border-emerald-400';
+      warnaBadge = 'bg-emerald-600 text-white';
+    } else if (skor >= 40) {
+      status = 'MERAGUKAN';
+      judul = 'Perlu Verifikasi Lanjutan (Tahan Dulu!)';
+      rekomendasi = 'Beberapa unsur belum jelas. Jangan diteruskan sebelum mengonfirmasi ke Wali Kelas atau Tata Usaha.';
+      warnaBox = 'bg-amber-50 border-amber-400';
+      warnaBadge = 'bg-amber-500 text-white';
+    } else {
+      status = 'HOAKS';
+      judul = 'Indikasi Kuat Hoaks / Penipuan!';
+      rekomendasi = 'STOP di kamu! Jangan meneruskan pesan ini atau mengeklik tautan di dalamnya agar teman sekelas tidak tertipu.';
+      warnaBox = 'bg-rose-50 border-rose-400';
+      warnaBadge = 'bg-rose-600 text-white';
+    }
+
+    // 5. Tampilkan Hasil ke Layar
+    const hasilBox = document.getElementById('hasilBox');
+    hasilBox.className = `mt-8 p-6 rounded-2xl border-2 transition-all ${warnaBox}`;
+    hasilBox.classList.remove('hidden');
+
+    const badge = document.getElementById('badgeStatus');
+    badge.className = `inline-block text-xs font-extrabold px-3 py-1 rounded-full uppercase tracking-wide mb-1 ${warnaBadge}`;
+    badge.textContent = status;
+
+    document.getElementById('judulHasil').textContent = judul;
+    document.getElementById('nilaiSkor').textContent = `${skor}/100`;
+    document.getElementById('rekomendasiTeks').textContent = rekomendasi;
+
+    const deteksiText = catatanDeteksi.length > 0 
+      ? '<b>Catatan Sistem:</b> ' + catatanDeteksi.join(' ') 
+      : '<b>Catatan Sistem:</b> Tidak ditemukan pola kata kunci spam/phishing yang mencolok pada struktur teks.';
+    document.getElementById('deteksiOtomatis').innerHTML = deteksiText;
+
+    // 6. Kirim Laporan ke Google Sheets via Apps Script
+    const statusSimpan = document.getElementById('statusSimpan');
+    statusSimpan.textContent = 'Menyimpan laporan ke Google Sheets sekolah...';
+    statusSimpan.className = 'text-xs font-semibold text-indigo-600';
+
+    const payload = {
+      pelapor: pelapor,
+      pesan: pesan,
+      skor: skor,
+      status: status,
+      catatan: catatanDeteksi.join(' | ') || 'Verifikasi standar'
+    };
+
+    google.script.run
+      .withSuccessHandler(function(res) {
+        if (res.success) {
+          statusSimpan.textContent = '✓ ' + res.message;
+          statusSimpan.className = 'text-xs font-bold text-emerald-700';
+          semuaLaporan = res.data;
+          renderPapanLaporan();
+        } else {
+          statusSimpan.textContent = res.message;
+          statusSimpan.className = 'text-xs font-bold text-rose-600';
+        }
+      })
+      .simpanLaporan(payload);
+  });
+
+  function resetForm() {
+    document.getElementById('formCekFakta').reset();
+    document.getElementById('hasilBox').classList.add('hidden');
+  }
+
+  function filterLaporan(kategori) {
+    filterAktif = kategori;
+    document.querySelectorAll('.filter-btn').forEach(btn => {
+      if (btn.textContent.toUpperCase() === kategori) {
+        btn.className = 'filter-btn bg-indigo-600 text-white text-xs font-bold px-3 py-2 rounded-lg';
+      } else {
+        btn.className = 'filter-btn bg-white text-slate-700 text-xs font-bold px-3 py-2 rounded-lg border border-slate-300';
+      }
+    });
+    renderPapanLaporan();
+  }
+
+  function renderPapanLaporan() {
+    // Update Statistik
+    document.getElementById('statTotal').textContent = semuaLaporan.length;
+    document.getElementById('statHoaks').textContent = semuaLaporan.filter(i => i.status === 'HOAKS').length;
+    document.getElementById('statMeragukan').textContent = semuaLaporan.filter(i => i.status === 'MERAGUKAN').length;
+    document.getElementById('statValid').textContent = semuaLaporan.filter(i => i.status === 'VALID').length;
+
+    // Filter data
+    const dataTampil = filterAktif === 'SEMUA' 
+      ? semuaLaporan 
+      : semuaLaporan.filter(item => item.status === filterAktif);
+
+    const tbody = document.getElementById('tabelLaporanBody');
+    
+    if (dataTampil.length === 0) {
+      tbody.innerHTML = '<tr><td colspan="4" class="py-8 text-center text-slate-400">Belum ada data laporan pada kategori ini.</td></tr>';
+      return;
+    }
+
+    tbody.innerHTML = dataTampil.map(item => {
+      let badgeClass = 'bg-slate-200 text-slate-700';
+      if (item.status === 'HOAKS') badgeClass = 'bg-rose-100 text-rose-700 border border-rose-200';
+      else if (item.status === 'MERAGUKAN') badgeClass = 'bg-amber-100 text-amber-700 border border-amber-200';
+      else if (item.status === 'VALID') badgeClass = 'bg-emerald-100 text-emerald-700 border border-emerald-200';
+
+      return `
+        <tr class="hover:bg-slate-50 transition">
+          <td class="py-3.5 px-4 align-top whitespace-nowrap">
+            <p class="font-bold text-slate-800">${escapeHtml(item.pelapor)}</p>
+            <p class="text-xs text-slate-400">${escapeHtml(item.waktu)}</p>
+          </td>
+          <td class="py-3.5 px-4 align-top max-w-md">
+            <p class="text-slate-700 line-clamp-2">${escapeHtml(item.pesan)}</p>
+          </td>
+          <td class="py-3.5 px-4 align-top font-extrabold text-slate-800">
+            ${item.skor}/100
+          </td>
+          <td class="py-3.5 px-4 align-top">
+            <span class="inline-block text-[11px] font-bold px-2.5 py-1 rounded-full ${badgeClass}">
+              ${escapeHtml(item.status)}
+            </span>
+          </td>
+        </tr>
+      `;
+    }).join('');
+  }
+
+  // Mencegah XSS saat menampilkan input pengguna ke tabel
+  function escapeHtml(text) {
+    if (!text) return '';
+    return String(text)
+      .replace(/&/g, "&amp;")
+      .replace(/</g, "&lt;")
+      .replace(/>/g, "&gt;")
+      .replace(/"/g, "&quot;")
+      .replace(/'/g, "&#039;");
+  }
+</script>
